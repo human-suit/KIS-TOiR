@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum EquipmentStatus {
+  Active
+  Repair
+  Reserve
+  WriteOff
+}
+
+enum RepairKind {
+  TO
+  TR
+  TRE
+  KR
+  AR
+  MP
+}
+
+enum RepairOrderStatus {
+  Draft
+  Approved
+  InWork
+  Done
+  Cancelled
+}
+
+model EquipmentType {
+  code                     String          @id
+  name                     String
+  manufacturer             String?
+  maintenanceIntervalHours Int?
+  overhaulIntervalHours    Int?
+  equipment                Equipment[]
+}
+
+model Equipment {
+  id                          String          @id @default(uuid())
+  inventoryNumber             String          @unique
+  serialNumber                String?
+  name                        String
+  equipmentTypeCode           String
+  equipmentType               EquipmentType   @relation(fields: [equipmentTypeCode], references: [code])
+  status                      EquipmentStatus @default(Active)
+  location                    String?
+  commissionedAt              DateTime?
+  totalEngineHours            Decimal?
+  engineHoursSinceLastRepair  Decimal?
+  lastRepairAt                DateTime?
+  notes                       String?
+  repairOrders                RepairOrder[]
+}
+
+model RepairOrder {
+  id                   String            @id @default(uuid())
+  number               String            @unique
+  equipmentId          String
+  equipment            Equipment         @relation(fields: [equipmentId], references: [id])
+  repairKind           RepairKind
+  status               RepairOrderStatus @default(Draft)
+  plannedAt            DateTime
+  startedAt            DateTime?
+  completedAt          DateTime?
+  contractor           String?
+  engineHoursAtRepair  Decimal?
+  description          String?
+  notes                String?
+}
