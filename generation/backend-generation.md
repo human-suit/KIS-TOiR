@@ -68,6 +68,27 @@ Use mapping rules from `backend/prisma-rules.md`:
 - DSL `decimal` -> DTO `string`
 - DSL `date` -> DTO `string` (ISO)
 
+## Filtering & search contract (must be generated)
+
+React Admin uses query parameters for pagination, sorting, and filtering.
+
+- **Pagination**: `_start`, `_end`
+- **Sorting**: `_sort`, `_order`
+- **Filtering**: arbitrary field keys in query string
+
+Additionally, to support `AutocompleteInput` search for references, list endpoints must support:
+
+- `q`: a generic search term that can be applied as an `OR` over a few human-meaningful fields (e.g. code/name/manufacturer, inventoryNumber/name, etc.)
+
+### Multi-value filter support
+
+For enum-like fields (e.g. `status`) the backend must accept both:
+
+- `status=Active` (single value)
+- `status=Active&status=Repair` (multiple values)
+
+Services must treat repeated query params as arrays and translate them to Prisma `in` filters.
+
 ---
 
 # Step 4 — Runtime infrastructure

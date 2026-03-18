@@ -43,6 +43,23 @@ React Admin
 
 <SelectInput source="status" choices={statusChoices} />
 
+## List filtering UX rules
+
+- Lists should provide a visible filter UX:
+  - Use `List` `filters` prop to define filter inputs.
+  - Use an actions toolbar that includes `FilterButton` so users can add/remove non-`alwaysOn` filters.
+
+## Multi-select enum filters
+
+When filtering by enum values where users often need multiple selections (e.g. `status`), use:
+
+`SelectArrayInput` in list filters, and ensure the backend supports repeated query params (e.g. `status=A&status=B`).
+
+## Reference selection UX rules
+
+For foreign keys, prefer `ReferenceInput` + `AutocompleteInput` over `SelectInput`.
+Autocomplete search should send `q` to backend using `filterToQuery={(searchText) => ({ q: searchText })}`.
+
 ---
 
 # Foreign Key Example

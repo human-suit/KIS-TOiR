@@ -7,8 +7,7 @@ import { EquipmentModule } from './modules/equipment/equipment.module';
 import { RepairOrderModule } from './modules/repair-order/repair-order.module';
 
 @Module({
-  imports: [
-    ConfigModule.forRoot({ isGlobal: true }),
+  imports: [ConfigModule.forRoot({ isGlobal: true }),
     PrismaModule,
     HealthModule,
     EquipmentTypeModule,

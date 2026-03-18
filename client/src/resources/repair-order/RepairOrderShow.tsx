@@ -1,46 +1,20 @@
-import {
-  Show,
-  SimpleShowLayout,
-  TextField,
-  NumberField,
-  DateField,
-  SelectField,
-  ReferenceField,
-} from 'react-admin';
-
-const repairKindChoices = [
-  { id: 'TO', name: 'Техническое обслуживание' },
-  { id: 'TR', name: 'Текущий ремонт' },
-  { id: 'TRE', name: 'Текущий расширенный ремонт' },
-  { id: 'KR', name: 'Капитальный ремонт' },
-  { id: 'AR', name: 'Аварийный ремонт' },
-  { id: 'MP', name: 'Метрологическая поверка' },
-];
-
-const statusChoices = [
-  { id: 'Draft', name: 'Черновик' },
-  { id: 'Approved', name: 'Утверждена' },
-  { id: 'InWork', name: 'В работе' },
-  { id: 'Done', name: 'Выполнена' },
-  { id: 'Cancelled', name: 'Отменена' },
-];
+import { Show, SimpleShowLayout, TextField } from 'react-admin';
 
 export const RepairOrderShow = () => (
   <Show>
     <SimpleShowLayout>
-      <TextField source="number" label="Номер заявки" />
-      <ReferenceField source="equipmentId" reference="equipment" label="Оборудование" link="show">
-        <TextField source="name" />
-      </ReferenceField>
-      <SelectField source="repairKind" label="Вид ремонта" choices={repairKindChoices} />
-      <SelectField source="status" label="Статус" choices={statusChoices} />
-      <DateField source="plannedAt" label="Плановая дата начала" />
-      <DateField source="startedAt" label="Фактическая дата начала" />
-      <DateField source="completedAt" label="Фактическая дата завершения" />
-      <TextField source="contractor" label="Подрядная организация" />
-      <NumberField source="engineHoursAtRepair" label="Наработка на момент ремонта (ч)" />
-      <TextField source="description" label="Описание работ / дефекта" />
-      <TextField source="notes" label="Примечания" />
+      <TextField source="id" label="id" />
+      <TextField source="number" label="number" />
+      <TextField source="equipmentId" label="equipmentId" />
+      <TextField source="repairKind" label="repairKind" />
+      <TextField source="status" label="status" />
+      <TextField source="plannedAt" label="plannedAt" />
+      <TextField source="startedAt" label="startedAt" />
+      <TextField source="completedAt" label="completedAt" />
+      <TextField source="contractor" label="contractor" />
+      <TextField source="engineHoursAtRepair" label="engineHoursAtRepair" />
+      <TextField source="description" label="description" />
+      <TextField source="notes" label="notes" />
     </SimpleShowLayout>
   </Show>
 );

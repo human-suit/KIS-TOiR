@@ -1,6 +1,8 @@
 export class UpdateEquipmentTypeDto {
-  name?: string;
-  manufacturer?: string;
-  maintenanceIntervalHours?: number;
-  overhaulIntervalHours?: number;
+  id?: string;
+  code?: string | null;
+  name?: string | null;
+  manufacturer?: string | null;
+  maintenanceIntervalHours?: number | null;
+  overhaulIntervalHours?: number | null;
 }

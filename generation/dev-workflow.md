@@ -2,6 +2,23 @@
 
 This document describes the **developer workflow** for running a generated fullstack application locally. The generator must produce a project that supports this workflow so the app is **fully runnable** after generation.
 
+## Regenerating code from DSL
+
+If the domain DSL changes (e.g. a new entity is added), regenerate backend + frontend artifacts from `examples/TOiR.domain.dsl`:
+
+```bash
+cd server
+npm run generate:from-dsl
+```
+
+Then apply the updated schema and seed data:
+
+```bash
+cd server
+npx prisma db push
+npx prisma db seed
+```
+
 ---
 
 # Prerequisites

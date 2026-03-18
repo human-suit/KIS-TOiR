@@ -1,36 +1,20 @@
-import {
-  Show,
-  SimpleShowLayout,
-  TextField,
-  NumberField,
-  DateField,
-  SelectField,
-  ReferenceField,
-} from 'react-admin';
-
-const statusChoices = [
-  { id: 'Active', name: 'В эксплуатации' },
-  { id: 'Repair', name: 'В ремонте' },
-  { id: 'Reserve', name: 'В резерве' },
-  { id: 'WriteOff', name: 'Списано' },
-];
+import { Show, SimpleShowLayout, TextField } from 'react-admin';
 
 export const EquipmentShow = () => (
   <Show>
     <SimpleShowLayout>
-      <TextField source="inventoryNumber" label="Инвентарный номер" />
-      <TextField source="serialNumber" label="Заводской номер" />
-      <TextField source="name" label="Наименование" />
-      <ReferenceField source="equipmentTypeCode" reference="equipment-types" label="Вид оборудования" link="show">
-        <TextField source="name" />
-      </ReferenceField>
-      <SelectField source="status" label="Статус" choices={statusChoices} />
-      <TextField source="location" label="Место эксплуатации" />
-      <DateField source="commissionedAt" label="Дата ввода в эксплуатацию" />
-      <NumberField source="totalEngineHours" label="Общая наработка (ч)" />
-      <NumberField source="engineHoursSinceLastRepair" label="Наработка с последнего ремонта (ч)" />
-      <DateField source="lastRepairAt" label="Дата последнего ремонта" />
-      <TextField source="notes" label="Примечания" />
+      <TextField source="id" label="id" />
+      <TextField source="inventoryNumber" label="inventoryNumber" />
+      <TextField source="serialNumber" label="serialNumber" />
+      <TextField source="name" label="name" />
+      <TextField source="equipmentTypeCode" label="equipmentTypeCode" />
+      <TextField source="status" label="status" />
+      <TextField source="location" label="location" />
+      <TextField source="commissionedAt" label="commissionedAt" />
+      <TextField source="totalEngineHours" label="totalEngineHours" />
+      <TextField source="engineHoursSinceLastRepair" label="engineHoursSinceLastRepair" />
+      <TextField source="lastRepairAt" label="lastRepairAt" />
+      <TextField source="notes" label="notes" />
     </SimpleShowLayout>
   </Show>
 );

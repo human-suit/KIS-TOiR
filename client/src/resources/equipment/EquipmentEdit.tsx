@@ -1,36 +1,29 @@
-import {
-  Edit,
-  SimpleForm,
-  TextInput,
-  NumberInput,
-  DateInput,
-  SelectInput,
-  ReferenceInput,
-} from 'react-admin';
+import { Edit, SimpleForm, TextInput, SelectInput, ReferenceInput, AutocompleteInput } from 'react-admin';
 
 const statusChoices = [
-  { id: 'Active', name: 'В эксплуатации' },
-  { id: 'Repair', name: 'В ремонте' },
-  { id: 'Reserve', name: 'В резерве' },
-  { id: 'WriteOff', name: 'Списано' },
+  { id: 'Active', name: 'Active' },
+  { id: 'Repair', name: 'Repair' },
+  { id: 'Reserve', name: 'Reserve' },
+  { id: 'WriteOff', name: 'WriteOff' },
 ];
 
 export const EquipmentEdit = () => (
   <Edit>
     <SimpleForm>
-      <TextInput source="inventoryNumber" label="Инвентарный номер" isRequired />
-      <TextInput source="serialNumber" label="Заводской номер" />
-      <TextInput source="name" label="Наименование" isRequired />
-      <ReferenceInput source="equipmentTypeCode" reference="equipment-types" label="Вид оборудования">
-        <SelectInput optionText="name" optionValue="code" isRequired />
+      <TextInput source="id" label="id" disabled />
+      <TextInput source="inventoryNumber" label="inventoryNumber" isRequired />
+      <TextInput source="serialNumber" label="serialNumber"  />
+      <TextInput source="name" label="name" isRequired />
+      <ReferenceInput source="equipmentTypeCode" reference="equipment-types" label="equipmentTypeCode">
+        <AutocompleteInput optionText={(record) => record.code ? `${record.code} — ${record.name ?? record.code}` : (record.name ?? record.id)} filterToQuery={(searchText) => ({ q: searchText })} />
       </ReferenceInput>
-      <SelectInput source="status" label="Статус" choices={statusChoices} />
-      <TextInput source="location" label="Место эксплуатации" />
-      <DateInput source="commissionedAt" label="Дата ввода в эксплуатацию" />
-      <NumberInput source="totalEngineHours" label="Общая наработка (ч)" />
-      <NumberInput source="engineHoursSinceLastRepair" label="Наработка с последнего ремонта (ч)" />
-      <DateInput source="lastRepairAt" label="Дата последнего ремонта" />
-      <TextInput source="notes" label="Примечания" multiline />
+      <SelectInput source="status" label="status" choices={statusChoices} emptyText="Не выбрано" />
+      <TextInput source="location" label="location"  />
+      <TextInput source="commissionedAt" label="commissionedAt" />
+      <TextInput source="totalEngineHours" label="totalEngineHours" />
+      <TextInput source="engineHoursSinceLastRepair" label="engineHoursSinceLastRepair" />
+      <TextInput source="lastRepairAt" label="lastRepairAt" />
+      <TextInput source="notes" label="notes"  />
     </SimpleForm>
   </Edit>
 );
