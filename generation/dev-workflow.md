@@ -95,6 +95,19 @@ Open the Vite URL in a browser; the React Admin app should load and use the back
 
 ---
 
+## Optional: api-format → OpenAPI 3.0
+
+Experimental tooling lives in `tools/api-format-to-openapi/`: a sample **domain api-format** JSON, a **prompt** for LLM conversion, and `convert.mjs` (**deterministic** mapping for `apiFormatVersion: "1"` or **`--mode llm`** via OpenAI). See `tools/api-format-to-openapi/README.md`.
+
+```bash
+cd tools/api-format-to-openapi
+node convert.mjs --in examples/api-format.example.json --out ../../openapi.generated.json
+```
+
+**AID / HTTP:** Nest exposes `POST /aid/export/openapi` and `POST /aid/export/app` (see `server/src/aid-export/README.md`). CLI bundle: `node generation/generate.mjs --print-bundle-json --dsl <file.dsl>`.
+
+---
+
 # Summary
 
 | Step | Command / location |
