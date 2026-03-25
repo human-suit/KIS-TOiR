@@ -92,6 +92,17 @@ X-AID-Export-Key: <если задан AID_EXPORT_API_KEY>
 
 ## CLI (без Nest)
 
+### Пошаговая демонстрация в терминале
+
+```bash
+cd tools/api-format-to-openapi
+npm run demo
+# или с паузой после каждого шага (Enter):
+npm run demo:pause
+```
+
+Показывает входной **api-format**, логику маппинга, запуск конвертера и структуру **OpenAPI**; результат — `demo-output/openapi.json`.
+
 ### api-format → OpenAPI
 
 ```bash

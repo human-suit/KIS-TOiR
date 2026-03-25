@@ -10,6 +10,23 @@
 | `prompts/llm-system.md` | Системный промпт для LLM: «верни только JSON OpenAPI 3.0.3» |
 | `convert.mjs` | CLI: режим `deterministic` (маппинг в коде) и `llm` (OpenAI API) |
 
+## Пошаговая демонстрация в терминале
+
+Чтобы **постепенно** увидеть: входной api-format → что делает конвертер → структура OpenAPI:
+
+```bash
+cd tools/api-format-to-openapi
+npm run demo
+```
+
+С паузой после каждого шага (нажимай Enter):
+
+```bash
+npm run demo:pause
+```
+
+Результат кладётся в `demo-output/openapi.json`.
+
 ## Детерминированный режим (без LLM)
 
 Подходит для **фиксированной** схемы `apiFormatVersion: "1"` как в примере.
